@@ -13,6 +13,10 @@ public class CalFitness {
 	
 	public double Fitness = 0.0;
 	private Double[]  Distance = null;
+	
+	private double accuracyWeight = 1;
+	private double simplicityWeight = 1;
+	
 	public double FitnessCal(Tree aTree) throws ClassNotFoundException, IOException{
 		
 	
@@ -26,7 +30,7 @@ public class CalFitness {
 		
 		for (int i = 0; i < ArticleTreeNum; i++){
 		Tree ArticleTree = ArticleTreeG.generateTree(ArticleDB.getInstance().getRandomArticle());
-		TreeWithID ArticleTreeWithID = new treeEditDistance.TreeWithID(aTree, aTree.getStartNode().getTag().toString(), 0);
+		TreeWithID ArticleTreeWithID = new treeEditDistance.TreeWithID(ArticleTree, ArticleTree.getStartNode().getTag().toString(), 0);
 		ArticleTrees.add(ArticleTreeWithID);
 		}
 		
@@ -39,7 +43,7 @@ public class CalFitness {
 			
 		}
 		
-		Fitness = sumAll(Distance)/ArticleTreeNum;
+		Fitness = accuracyWeight * sumAll(Distance)/ArticleTreeNum + simplicityWeight * aTree.getSimplicityScore();
 		return Fitness;
 	}
 		

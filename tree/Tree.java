@@ -80,7 +80,7 @@ public class Tree{
 		
 	}
 	
-	private double getSimplicityScore() {
+	public double getSimplicityScore() {
 		calculateSimplicity();
 		return simplicityScore;
 	}

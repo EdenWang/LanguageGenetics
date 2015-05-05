@@ -1,5 +1,6 @@
 package population;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class Population {
 		}
 	}
 
-	public void removeLowFitnessMembers(){
+	public void removeLowFitnessMembers() throws ClassNotFoundException, IOException{
 		
 		List<Tree> toRemove = new ArrayList<Tree>();
 		
@@ -83,5 +84,15 @@ public class Population {
 		}
 		
 		
+	}
+	
+	public void filterPopulation() throws ClassNotFoundException, IOException {
+		removeSimilarMembers();
+		removeLowFitnessMembers();
+	
+	}
+	
+	public void addToPopulation(List<Tree> toAdd) {
+		population.addAll(toAdd);
 	}
 }

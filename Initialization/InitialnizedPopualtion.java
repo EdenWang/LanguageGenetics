@@ -12,6 +12,7 @@ public class InitialnizedPopualtion {
 	
 	private int maxDepth = 6; // to be determined
     //private int minDepth = 3; // to be determined
+	private int parentNum = 100;
 	
    public Tree GenerateRandomTree(int maxDepth){
 	   
@@ -51,5 +52,20 @@ public class InitialnizedPopualtion {
 		 return null;
 	   }
      }
+   
+   public ArrayList<Tree> getInitialPopulation(){ 
+
+		ArrayList<Tree> parents = new ArrayList<Tree>();
+		for (int i = 0; i< parentNum; i++){
+
+			InitialnizedPopualtion IP = new InitialnizedPopualtion();
+			Tree  iTree = IP.GenerateRandomTree(maxDepth);
+			parents.add(iTree);
+		}
+		return parents;
+	}
+   
+   
+
 }
 
