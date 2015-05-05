@@ -1,12 +1,18 @@
 package tree;
 
+
 import java.util.List;
 
-public class Tree {
+
+public class Tree{
 
 	private List<Node> allNodes;
 	
 	private Node startNode;
+	
+	private Node root;
+	
+	private double fitness;
 	
 	private double simplicityScore;
 	
@@ -24,11 +30,13 @@ public class Tree {
 		return allNodes;
 	}
 	
+	
 	public void changeNode(Node oldNode, Node newNode) {
 		Node parentNode = getParent(oldNode);
 		parentNode.getAllChildren().remove(oldNode);
 		parentNode.getAllChildren().add(newNode);
 	}
+	
 	
 	public void removeNode(Node node) {
 		Node parentNode = getParent(node);
@@ -85,13 +93,13 @@ public class Tree {
 
 
 
-	private double getDepth() {
+	public double getDepth() {
 		return startNode.getDepth();
 	}
 
 
 
-	private double getWidth() {
+	public double getWidth() {
 		return startNode.getWidth();
 	}
 
@@ -100,7 +108,30 @@ public class Tree {
 	public Node getStartNode() {
 		return startNode;
 	}
-
+    
+	// add by Eden
+	public Node getRoot(){
+		
+		return root;
+	}
 	
+	// add by Eden
+	public void setRoot(Node aRoot){
+		
+		root = aRoot;
+	}
+	
+	public void setStartNode(Node node) {
+		startNode = node;
+	}
+	
+	public void setFitness(double fitness){
+		this.fitness = fitness;
+	}
+	
+	public double getFitness(){
+		
+		return this.fitness;
+	}
 	
 }

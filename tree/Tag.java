@@ -13,7 +13,7 @@ public enum Tag {
 	
 
 
-	private static final List<Tag> tags = Collections.unmodifiableList(Arrays.asList(values()));
+	public static final List<Tag> tags = Collections.unmodifiableList(Arrays.asList(values()));
 	private static final int tagSize = tags.size();
 	private static final Random random = new Random();
 
@@ -57,12 +57,14 @@ public enum Tag {
 		WRB.tagGroup = new Tag[]{Tag.WDT, Tag.WP, Tag.WP$};
 	}
 
+	// modified by Eden (obmit this == otherTag)
 	public boolean sameGroup(Tag otherTag) {
-		if(Arrays.asList(tagGroup).contains(otherTag) || this == otherTag) {
+		if(Arrays.asList(tagGroup).contains(otherTag)) {
 			return true;
 		}
 		return false;
 	}
+	
 
 	public static Tag randomTag(Tag oldTag)  {
 		Tag newTag = tags.get(random.nextInt(tagSize));

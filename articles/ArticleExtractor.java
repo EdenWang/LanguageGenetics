@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class ArticleExtractor {
 
-	private String pathWiki = "C:\\Users\\Milan\\Desktop\\School\\CUHK\\AI\\Paper\\LanguageGenetics\\wikipedia_pos.txt";
+	private String pathWiki = "D:\\Courses\\Final project\\LanguageGenetics\\wikipedia_pos.txt";
 	private ArticleDB articleDB;
 	
 	public ArticleExtractor() throws ClassNotFoundException, IOException {

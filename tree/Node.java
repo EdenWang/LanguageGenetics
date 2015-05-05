@@ -6,10 +6,11 @@ import java.util.List;
 public class Node {
 	
 	private Tag tag;
-	private int probability;
+	private int probability; 
 	private int amount;
 	
 	private List<Node> children;
+	
 	
 	public Node(Tag tag, int probability) {
 		this.amount = 1;
@@ -26,6 +27,18 @@ public class Node {
 		
 		return allChildren;
 	}
+	// add by Eden
+			public int getChildrenNum(){
+				
+				return this.getAllChildren().size();
+			}
+			
+    // add by Eden
+     public void addAllChildren(List<Node> children){
+    	 for (Node child:children){
+    		 this.addChild(child);
+    	 }
+     }
 
 	public double getDepth() {
 		double maxDepth = 0;
@@ -106,5 +119,17 @@ public class Node {
 	public void addChild(Node node) {
 		children.add(node);
 	}
+	
+	// add by Eden
+	public boolean sameNode(Node aNode){
+		if (this.getTag() == aNode.getTag() && this.getProbability() == aNode.getProbability()){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
 
 }
