@@ -63,7 +63,7 @@ public class Population {
 		
 		for (Tree pop:population){
 			
-			parent.setFitness((new CalFitness()).FitnessCal(parent));
+			pop.setFitness((new CalFitness()).FitnessCal(pop));
 		}
 		
 		double sum=0.0;
