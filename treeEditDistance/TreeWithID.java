@@ -1,4 +1,4 @@
-package treeEditDistance;
+/*package treeEditDistance;
 
 
 import java.util.Hashtable;
@@ -42,7 +42,7 @@ public class TreeWithID extends TreeDefinitionOnID{
 		 }
 	
 	// note tree with ID in order (postorder[0] or preorder[1])
-	public TreeWithID (Tree tree_B, String _root, int ordering){
+	public TreeWithID (Tree tree_B, Node _root, int ordering){
 		SetRoot(_root);
 		treeStructure = GetHashTable_String(tree_B); 
 		treeNodeStructure = GetHashTable(tree_B);
@@ -50,27 +50,28 @@ public class TreeWithID extends TreeDefinitionOnID{
 	}
 	
 	 
-	public Collection<String> GetNodes(){
-		return treeStructure.keySet();
+	public Collection<Node> GetNodes(){
+		return treeNodeStructure.keySet();
 	}
     
-	public List<String> GetChildren(String Nodelabel_A){
+	//public List<String> GetChildren(String Nodelabel_A){
 		
-		return treeStructure.get(Nodelabel_A);
-	}
+	//	return treeStructure.get(Nodelabel_A);
+//	}
      
-	public String toString(){
-		int RootID = GetRootID();
-		StringBuffer rStr = new StringBuffer();
+//	public String toString(){
+//		int RootID = GetRootID();
+//		StringBuffer rStr = new StringBuffer();
 
-		for (int i=RootID;i>0;i--) {
-		    rStr.append(GetLabel(i)+"("+i+") \n");
-		    for (String child : GetChildren(GetLabel(i))) {
-			rStr.append(" - "+child+"("+GetNodeID(child)+")  \n");
-		    }
-		}
-		return rStr.toString();
-	    }
+//		for (int i=RootID;i>0;i--) {
+//		    rStr.append(GetLabel(i)+"("+i+") \n");
+//		    for (String child : GetChildren(GetLabel(i))) {
+//			rStr.append(" - "+child+"("+GetNodeID(child)+")  \n");
+//		    }
+//		}
+//		return rStr.toString();
+//	    }
 		
-	}
+//	}
 
+*/

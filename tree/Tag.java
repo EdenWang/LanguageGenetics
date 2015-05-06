@@ -17,7 +17,7 @@ public enum Tag {
 	private static final int tagSize = tags.size();
 	private static final Random random = new Random();
 
-	private Tag[] tagGroup;
+	private Tag[] tagGroup ;
 	
 	static {
 		START.tagGroup = new Tag[]{};
@@ -59,9 +59,12 @@ public enum Tag {
 
 	// modified by Eden (obmit this == otherTag)
 	public boolean sameGroup(Tag otherTag) {
-		if(Arrays.asList(tagGroup).contains(otherTag)) {
+		if (tagGroup == null)
+			return false;
+		else if(Arrays.asList(tagGroup).contains(otherTag)) {
 			return true;
 		}
+		else
 		return false;
 	}
 	

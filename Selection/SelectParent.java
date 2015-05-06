@@ -12,7 +12,7 @@ import tree.Tree;
 public class SelectParent {
 
 	//private int parentNum = 100; // initial parent number
-	private List<PairedParents> possibleParents = new ArrayList<PairedParents>();
+	public List<PairedParents> possibleParents = new ArrayList<PairedParents>();
 	
 	private NavigableMap<Double, PairedParents> randomList;
 	private Random random = new Random();

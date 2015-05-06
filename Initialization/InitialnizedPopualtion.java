@@ -20,9 +20,9 @@ public class InitialnizedPopualtion {
 	   
 	   Tree aTree = new Tree();
 	   Node start = new Node(Tag.START,1);
-	   for (int i = 1; i < random.nextInt(maxWidth)+1; i++){
+	   for (int i = 1; i <= random.nextInt(maxWidth)+1; i++){
 		   
-		   start.addChild(BuildRandomTree(maxDepth-1));
+		   start.addChild(BuildRandomTree(random.nextInt(maxDepth-1)));
 	   }
 	   
 	   aTree.setStartNode(start);
@@ -35,12 +35,13 @@ public class InitialnizedPopualtion {
 	   
 //	   Node start = new Node(Tag.START, 1); // initionlization of root
 	   NodeFactory aNodeFactory = new NodeFactory();
+	   
 	   Node root = new Node(Tag.CC, 1); // initialization of root
 	//   Hashtable<Node, List<Node>> aNodes = new Hashtable<Node, List<Node>>();
 	   if (maxDepth > 0){
 		  root = aNodeFactory.GetNode();
 	      
-	     for (int i = 1; i < random.nextInt(maxWidth)+1; i++){
+	     for (int i = 1; i <= random.nextInt(maxWidth)+1; i++){
 	    	 
 	    	 root.addChild(BuildRandomTree(maxDepth - 1));
 	    	 

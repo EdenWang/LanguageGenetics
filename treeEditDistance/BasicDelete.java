@@ -1,6 +1,7 @@
 package treeEditDistance;
 
 import tree.Node;
+import tree.Tree;
 
 public class BasicDelete extends TreeEditOperation{
 	
@@ -11,7 +12,7 @@ public class BasicDelete extends TreeEditOperation{
 		super.opName = "DELETE";
 	}
 	
-	public double getCost(int aNodeID, int bNodeID, TreeWithID aTree, TreeWithID bTree){
+	public double getCost(int aNodeID, int bNodeID, Tree aTree, Tree bTree){
 		
 		Node bNode = bTree.GetNode(bNodeID);
 		double probability = bNode.getProbability();

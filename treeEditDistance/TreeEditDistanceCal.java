@@ -1,5 +1,7 @@
 package treeEditDistance;
+import tree.Tree;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.ArrayList;
 
 
@@ -8,19 +10,21 @@ public class TreeEditDistanceCal {
 //	private Hashtable<String, Hashtable<String, Double>> ForestDistance = null;
 	private double[][] Distance = null;
 	
-	public double TreeEditDistanceCalculation (TreeWithID aTree, TreeWithID bTree, OpsTreeTransform ops){
+	public double TreeEditDistanceCalculation (Tree aTree, Tree bTree, OpsTreeTransform ops){
 		
-		Distance = new double[aTree.GetNodeNumber()+1][bTree.GetNodeNumber()+1];
-		
+	
+		aTree.TreeWithID(aTree, aTree.getStartNode(), 0);
+		bTree.TreeWithID(bTree, bTree.getStartNode(), 0);
+		Distance = new double[aTree.getAllNodes().size()+1][bTree.getAllNodes().size()+1];
 		// pre-procedures
 		// 1. find leftmost leaf and keyroots
 		Hashtable<Integer, Integer> aLeftLeaf = new Hashtable<Integer, Integer>();
 		Hashtable<Integer, Integer> bLeftLeaf = new Hashtable<Integer, Integer>();
-		ArrayList<Integer> aKeyroots = new ArrayList<Integer>();
-		ArrayList<Integer> bKeyroots = new ArrayList<Integer>();
+		List<Integer> aKeyroots = new ArrayList<Integer>();
+		List<Integer> bKeyroots = new ArrayList<Integer>();
 		
 		FindHelpTable(aTree, aLeftLeaf, aKeyroots, aTree.GetRootID());
-		FindHelpTable(aTree, aLeftLeaf, aKeyroots, aTree.GetRootID());
+		FindHelpTable(bTree, bLeftLeaf, bKeyroots, bTree.GetRootID());
 		
 		for (Integer aKeyroot: aKeyroots) {
 		    for (Integer bKeyroot:bKeyroots) {
@@ -31,20 +35,20 @@ public class TreeEditDistanceCal {
 		    	// for all descendant rooted at akeyroot: i 
 		    	for (int i= aLeftLeaf.get(aKeyroot); i<= aKeyroot; i++){
 		    		
-		    		SetFD(i, bLeftLeaf.get(bKeyroot)-1, GetFD(i-1, bLeftLeaf.get(bKeyroot)-1, FD) + ops.getOp(OpsTreeTransform.DELETE).getCost(i, 0, aTree, bTree), FD);
+		    		SetFD(i, bLeftLeaf.get(bKeyroot)-1, GetFD(i-1, bLeftLeaf.get(bKeyroot)-1, FD) + ops.getOp(OpsTreeTransform.DELETE).getCost(i, 1, aTree, bTree), FD);
 		    	}
 		    	
 
 		    	// for all descendant rooted at bkeyroot: j 
                 for (int j= bLeftLeaf.get(bKeyroot); j<= bKeyroot; j++){
 		    		
-		    		SetFD(aLeftLeaf.get(aKeyroot)-1, j, GetFD(aLeftLeaf.get(aKeyroot)-1, j-1, FD) + ops.getOp(OpsTreeTransform.INSERT).getCost(0, j, aTree, bTree), FD);
+		    		SetFD(aLeftLeaf.get(aKeyroot)-1, j, GetFD(aLeftLeaf.get(aKeyroot)-1, j-1, FD) + ops.getOp(OpsTreeTransform.INSERT).getCost(1, j, aTree, bTree), FD);
 		    	}
                 
                 for (int i= aLeftLeaf.get(aKeyroot); i<= aKeyroot; i++){
                 	 for (int j= bLeftLeaf.get(bKeyroot); j<= bKeyroot; j++){
 
-                          double min = java.lang.Math.min(GetFD(i-1, j, FD) + ops.getOp(OpsTreeTransform.DELETE).getCost(i, 0, aTree, bTree), GetFD(i, j-1, FD) + ops.getOp(OpsTreeTransform.INSERT).getCost(0, j, aTree, bTree));
+                          double min = java.lang.Math.min(GetFD(i-1, j, FD) + ops.getOp(OpsTreeTransform.DELETE).getCost(i, 1, aTree, bTree), GetFD(i, j-1, FD) + ops.getOp(OpsTreeTransform.INSERT).getCost(1, j, aTree, bTree));
                 		 
                           if ((aLeftLeaf.get(i) == aLeftLeaf.get(aKeyroot))
                   			    && 
@@ -65,11 +69,11 @@ public class TreeEditDistanceCal {
 		    	
 		// return result
 		
-		return Distance[aTree.GetNodeNumber()][bTree.GetNodeNumber()];
+		return Distance[aTree.getAllNodes().size()][bTree.getAllNodes().size()];
 		
 		}
 	
-	public void FindHelpTable(TreeWithID aTree, Hashtable<Integer, Integer> LeftMostLeaves, ArrayList<Integer> keyroots, int aNodeID){
+	public void FindHelpTable(Tree aTree, Hashtable<Integer, Integer> LeftMostLeaves, List<Integer> keyroots, int aNodeID){
 		
 		FindHelpTableRecurse(aTree, LeftMostLeaves, keyroots, aNodeID);
 		
@@ -80,7 +84,7 @@ public class TreeEditDistanceCal {
 		LeftMostLeaves.put(0,0);
 	}
 	
-	public void FindHelpTableRecurse(TreeWithID aTree, Hashtable<Integer, Integer> LeftMostLeaves, ArrayList<Integer> keyroots, int aNodeID){
+	public void FindHelpTableRecurse(Tree aTree, Hashtable<Integer, Integer> LeftMostLeaves, List<Integer> keyroots, int aNodeID){
 		
 		if(aTree.isLeaf(aNodeID)){
 			
@@ -92,7 +96,7 @@ public class TreeEditDistanceCal {
 			boolean seenLeftMost = false;
 			for(Integer child: aTree.GetChildrenIDs(aNodeID)){
 				
-				FindHelpTableRecurse(aTree, LeftMostLeaves, keyroots, aNodeID);
+				FindHelpTableRecurse(aTree, LeftMostLeaves, keyroots, child);
 				
 				if (!seenLeftMost){
 					

@@ -1,6 +1,7 @@
 package treeEditDistance;
 
 import tree.Node;
+import tree.Tree;
 import tree.Tag;
 
 public class BasicRename extends TreeEditOperation{
@@ -10,7 +11,7 @@ public class BasicRename extends TreeEditOperation{
 			super.opName = "RELABEL";
 		    }
 	 
-	 public double getCost(int aNodeID, int bNodeID, TreeWithID aTree, TreeWithID bTree){
+	 public double getCost(int aNodeID, int bNodeID, Tree aTree, Tree bTree){
 		
 		 Node aNode = aTree.GetNode(aNodeID);
 		 Node bNode = bTree.GetNode(bNodeID);

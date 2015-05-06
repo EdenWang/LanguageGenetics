@@ -14,31 +14,29 @@ public class NodeFactory {
       Random random = new Random();
 	  public List<Node> GetNodeFactory(){
 			
-		  int count = 0;
+		 // int count = 0;
 		  
 			for (Tag tag:tree.Tag.tags){
 				
-				count++;
-				System.out.print(count);
+			//	count++;
+			//	System.out.print(count);
 				int random1 = random.nextInt(100)+1;
 				Node aNode = new Node(tag, random1);
-				rNodeFactory.add(aNode);	
+				rNodeFactory.add(aNode);
 			}
 			
+		//	System.out.print(rNodeFactory.get(4).getTag().toString());
 			return rNodeFactory;
 		}
 	  
 	  public Node GetNode(){
+		  
 		  GetNodeFactory();
 		  
-		  for (Tag tag:tree.Tag.tags){
-				
-				int random1 = random.nextInt(100)+1;
-				//System.out.print(random1);
-				Node aNode = new Node(tag, random1);
-				rNodeFactory.add(aNode);	
-			}
-		  int nodeID = random.nextInt(rNodeFactory.size()) + 1; 
+		int nodeID = random.nextInt(rNodeFactory.size()) ;
+		 // System.out.println(nodeID); 
+		// System.out.println(rNodeFactory.size());
+		  
 		  return rNodeFactory.get(nodeID);
 	  }
 	

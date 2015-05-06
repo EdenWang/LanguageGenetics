@@ -9,7 +9,7 @@ public class Node {
 	private int probability; 
 	private int amount;
 	
-	private List<Node> children;
+	public List<Node> children = new ArrayList<Node>();
 	
 	
 	public Node(Tag tag, int probability) {
@@ -18,11 +18,12 @@ public class Node {
 		this.probability = probability;
 	}
 
+	// adjusted by eden
 	public List<Node> getAllChildren() {
 		List<Node> allChildren = new ArrayList<Node>();
 		
 		for(Node child: children) {
-			allChildren.addAll(child.getAllChildren());
+			allChildren.add(child);
 		}
 		
 		return allChildren;

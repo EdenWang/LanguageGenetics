@@ -19,12 +19,12 @@ public class FindSimilarMember {
 	}
 	public double getDistance(Tree aTree, Tree bTree){
 		
-		TreeWithID aTreeWithID = new treeEditDistance.TreeWithID(aTree, aTree.getStartNode().getTag().toString(), 0);
-		TreeWithID bTreeWithID = new treeEditDistance.TreeWithID(bTree, bTree.getStartNode().getTag().toString(), 0);
+	// aTreeWithID = new treeEditDistance.TreeWithID(aTree, aTree.getStartNode().getTag().toString(), 0);
+	//	TreeWithID bTreeWithID = new treeEditDistance.TreeWithID(bTree, bTree.getStartNode().getTag().toString(), 0);
 		OpsTreeTransform ops = new OpsTreeTransform();
 		
 		TreeEditDistanceCal TDC = new TreeEditDistanceCal();
-		distance = TDC.TreeEditDistanceCalculation(aTreeWithID, bTreeWithID, ops);
+		distance = TDC.TreeEditDistanceCalculation(aTree, bTree, ops);
 		
 		return distance;
 	}

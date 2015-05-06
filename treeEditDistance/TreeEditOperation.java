@@ -1,5 +1,5 @@
 package treeEditDistance;
-
+import tree.Tree;
 
 public abstract class TreeEditOperation {
 	String opName = "";
@@ -8,5 +8,5 @@ public abstract class TreeEditOperation {
 	return opName;
     }
 
-    public abstract double getCost(int aNodeID, int bNodeID, TreeWithID aTree, TreeWithID bTree);
+    public abstract double getCost(int aNodeID, int bNodeID, Tree aTree, Tree bTree);
 }

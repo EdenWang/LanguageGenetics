@@ -6,6 +6,7 @@ import tree.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import articles.ArticleDB;
 
@@ -22,16 +23,16 @@ public class CalFitness {
 		
 	
 		
-		TreeWithID aTreeWithID = new treeEditDistance.TreeWithID(aTree, aTree.getStartNode().getTag().toString(), 0);
+	//	TreeWithID aTreeWithID = new treeEditDistance.TreeWithID(aTree, aTree.getStartNode(), 0);
 		
 		ArticleTreeGenerator ArticleTreeG = new ArticleTreeGenerator();
 		
-		ArrayList<TreeWithID> ArticleTrees = new ArrayList<TreeWithID>();
+		List<Tree> ArticleTrees = new ArrayList<Tree>();
 		
 		for (int i = 0; i < ArticleTreeNum; i++){
 		Tree ArticleTree = ArticleTreeG.generateTree(ArticleDB.getInstance().getRandomArticle());
-		TreeWithID ArticleTreeWithID = new treeEditDistance.TreeWithID(ArticleTree, ArticleTree.getStartNode().getTag().toString(), 0);
-		ArticleTrees.add(ArticleTreeWithID);
+		//TreeWithID ArticleTreeWithID = new treeEditDistance.TreeWithID(ArticleTree, ArticleTree.getStartNode().getTag().toString(), 0);
+		ArticleTrees.add(ArticleTree);
 		}
 		
 		for (int i= 0; i < ArticleTreeNum; i++){
@@ -39,7 +40,7 @@ public class CalFitness {
 			OpsTreeTransform ops = new OpsTreeTransform();
 			
 			TreeEditDistanceCal TDC = new TreeEditDistanceCal();
-			Distance[i] = TDC.TreeEditDistanceCalculation(aTreeWithID, ArticleTrees.get(i), ops);
+			Distance[i] = TDC.TreeEditDistanceCalculation(aTree, ArticleTrees.get(i), ops);
 			
 		}
 		
