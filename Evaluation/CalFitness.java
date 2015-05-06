@@ -14,13 +14,13 @@ public class CalFitness {
 	public double Fitness = 0.0;
 	private Double[]  Distance = null;
 	
-	private double accuracyWeight = 1;
-	private double simplicityWeight = 1;
+	public static double accuracyWeight = 1;
+	public static double simplicityWeight = 1;
+	public static int ArticleTreeNum = 10; 
 	
 	public double FitnessCal(Tree aTree) throws ClassNotFoundException, IOException{
 		
 	
-		int ArticleTreeNum = 10; // to be modified
 		
 		TreeWithID aTreeWithID = new treeEditDistance.TreeWithID(aTree, aTree.getStartNode().getTag().toString(), 0);
 		

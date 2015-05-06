@@ -12,7 +12,7 @@ import tree.Tree;
 public class Population {
 
 	private List<Tree> population;
-	private double fitnessThreshold = 0.5;
+	public static double fitnessThreshold = 0.5;
 
 	private static Population instance = null;
 
@@ -23,7 +23,7 @@ public class Population {
 		return instance;
 	}
 
-	private Population() {
+	public Population() {
 		population = new ArrayList<Tree>();
 	}
 

@@ -4,19 +4,24 @@ import java.util.ArrayList;
 
 import tree.Node;
 import tree.Tag;
-
+import java.util.Random;
+import java.util.List;
 public class NodeFactory {
 
-	  private ArrayList<Node> rNodeFactory;
+	  private List<Node> rNodeFactory = new ArrayList<Node>();
 	//  private Node rNode;
 	  //private int rNodeID; 
-      
-	  public ArrayList<Node> GetNodeFactory(){
+      Random random = new Random();
+	  public List<Node> GetNodeFactory(){
 			
+		  int count = 0;
+		  
 			for (Tag tag:tree.Tag.tags){
 				
-				int random = (int) Math.random()*100+1;
-				Node aNode = new Node(tag, random);
+				count++;
+				System.out.print(count);
+				int random1 = random.nextInt(100)+1;
+				Node aNode = new Node(tag, random1);
 				rNodeFactory.add(aNode);	
 			}
 			
@@ -24,14 +29,16 @@ public class NodeFactory {
 		}
 	  
 	  public Node GetNode(){
+		  GetNodeFactory();
 		  
 		  for (Tag tag:tree.Tag.tags){
 				
-				int random = (int) Math.random()*100+1;
-				Node aNode = new Node(tag, random);
+				int random1 = random.nextInt(100)+1;
+				//System.out.print(random1);
+				Node aNode = new Node(tag, random1);
 				rNodeFactory.add(aNode);	
 			}
-		  int nodeID = (int) Math.random()*rNodeFactory.size() + 1; 
+		  int nodeID = random.nextInt(rNodeFactory.size()) + 1; 
 		  return rNodeFactory.get(nodeID);
 	  }
 	

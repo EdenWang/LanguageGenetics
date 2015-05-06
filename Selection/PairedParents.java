@@ -13,14 +13,22 @@ public class PairedParents {
 	
 	private double fitness;
 	
-	private double distanceAdjuster = 2;
-	private double fitnessAdjuster = 1;
+	public static double distanceAdjuster = 2;
+	public static double fitnessAdjuster = 1;
 	
 	public PairedParents(Tree tree1, Tree tree2) {
 		parent1 = tree1;
 		parent2 = tree2;
 	}
-	
+	 public Tree getParent(int parentID){
+		 if (parentID == 1)
+			 return parent1;
+		 else if (parentID == 2)
+			 return parent2;
+		 else 
+			 return null;
+		 
+	 }
 	public void calculateFitness() {
 		double distance = (new FindSimilarMember()).getDistance(parent1, parent2);
 		double totalFitness = parent1.getFitness() + parent2.getFitness();

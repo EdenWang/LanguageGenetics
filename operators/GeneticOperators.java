@@ -11,7 +11,7 @@ import tree.Tree;
 public class GeneticOperators {
 
 	private final Random random = new Random();
-	private final int repairThreshold = 5;
+    public static int repairThreshold = 5;
 
 	public void crossover(Tree tree1, Tree tree2) {
 		List<Node> nodes1 = tree1.getAllNodes();

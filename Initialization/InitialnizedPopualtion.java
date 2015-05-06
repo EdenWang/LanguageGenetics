@@ -1,8 +1,9 @@
 package Initialization;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+//import java.util.Hashtable;
 import java.util.List;
+import java.util.Random;
 
 import tree.Node;
 import tree.Tag;
@@ -10,56 +11,56 @@ import tree.Tree;
 
 public class InitialnizedPopualtion {
 	
-	private int maxDepth = 6; // to be determined
+	public static int maxDepth = 6; // to be determined
+	public static int maxWidth = 20; // to be determined
     //private int minDepth = 3; // to be determined
-	private int parentNum = 100;
-	
-   public Tree GenerateRandomTree(int maxDepth){
+	public static int initialTreeNum = 100;
+	Random random = new Random();
+   public Tree GenerateRandomTree(){
 	   
 	   Tree aTree = new Tree();
-	   Hashtable<Node, List<Node>> aHashTree = BuildRandomTree(maxDepth);
-	   for (Node aNode: aHashTree.keySet()){
-		   if(aNode.getTag() == Tag.START) {
-			   aTree.setStartNode(aNode);
-		   }
+	   Node start = new Node(Tag.START,1);
+	   for (int i = 1; i < random.nextInt(maxWidth)+1; i++){
+		   
+		   start.addChild(BuildRandomTree(maxDepth-1));
 	   }
 	   
+	   aTree.setStartNode(start);
 	   return aTree;
 	   
    }
    
    // hashtable should be examined
-   public Hashtable<Node, List<Node>> BuildRandomTree(int maxDepth){
+   public Node BuildRandomTree(int maxDepth){
 	   
-	   Node root = new Node(Tag.START, 1); // initionlization of root
+//	   Node start = new Node(Tag.START, 1); // initionlization of root
 	   NodeFactory aNodeFactory = new NodeFactory();
-	   Hashtable<Node, List<Node>> aNodes = new Hashtable<Node, List<Node>>();
+	   Node root = new Node(Tag.CC, 1); // initialization of root
+	//   Hashtable<Node, List<Node>> aNodes = new Hashtable<Node, List<Node>>();
 	   if (maxDepth > 0){
 		  root = aNodeFactory.GetNode();
-	   
-	     for (int i = 1; i < root.getChildrenNum()+1; i++){
+	      
+	     for (int i = 1; i < random.nextInt(maxWidth)+1; i++){
 	    	 
-	    	 aNodes.putAll(BuildRandomTree(maxDepth - 1));
-	     }
-	     List<Node> rootChildren = new ArrayList<Node>();
-	     rootChildren.add(root);	    		 
-	     
-	     aNodes.put(new Node(Tag.START, 1), rootChildren);
-	     return aNodes;
-       }
+	    	 root.addChild(BuildRandomTree(maxDepth - 1));
+	    	 
+	     }    		 
+	   }
 	   else{
 		   
-		 return null;
+		 root = aNodeFactory.GetNode();
 	   }
+	   
+	   return root;
      }
    
-   public ArrayList<Tree> getInitialPopulation(){ 
+   public List<Tree> getInitialPopulation(){ 
 
-		ArrayList<Tree> parents = new ArrayList<Tree>();
-		for (int i = 0; i< parentNum; i++){
+		List<Tree> parents = new ArrayList<Tree>();
+		for (int i = 0; i< initialTreeNum; i++){
 
 			InitialnizedPopualtion IP = new InitialnizedPopualtion();
-			Tree  iTree = IP.GenerateRandomTree(maxDepth);
+			Tree  iTree = IP.GenerateRandomTree();
 			parents.add(iTree);
 		}
 		return parents;

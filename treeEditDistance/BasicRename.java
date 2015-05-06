@@ -5,6 +5,7 @@ import tree.Tag;
 
 public class BasicRename extends TreeEditOperation{
 	
+	public static int RenameCost = 2; 
 	 public BasicRename() {
 			super.opName = "RELABEL";
 		    }
@@ -36,18 +37,18 @@ public class BasicRename extends TreeEditOperation{
 			if (aTag == bTag){
 				
 				
-				 cost = (aProbability - bProbability)/2;
+				 cost = (aProbability - bProbability)*RenameCost/4;
 				
 			}
 			else {
 				
 				if (aTag.sameGroup(bTag)){
 					
-				   cost = aProbability - bProbability;
+				   cost = (aProbability - bProbability)*RenameCost/2;
 				}
 				else {
 					
-					cost = (aProbability - bProbability)*2;
+					cost = (aProbability - bProbability)*RenameCost;
 				}
 			}
 		}

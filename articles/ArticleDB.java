@@ -44,6 +44,7 @@ public class ArticleDB {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private void loadArticles() throws IOException, ClassNotFoundException {
 		FileInputStream in;
 		try {

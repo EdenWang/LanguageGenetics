@@ -3,6 +3,7 @@ import tree.Node;
 
 public class BasicInsert extends TreeEditOperation{
 	
+	public static int InsertCost = 1;
 	public BasicInsert(){
 		
 		super.opName = "INSERT";
@@ -12,7 +13,7 @@ public class BasicInsert extends TreeEditOperation{
 		
 		Node aNode = aTree.GetNode(aNodeID);
 		double probability = aNode.getProbability();
-		double cost = probability*1;
+		double cost = probability*InsertCost;
 		return cost;
 	}
 	}
