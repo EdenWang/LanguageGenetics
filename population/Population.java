@@ -23,7 +23,7 @@ public class Population {
 		return instance;
 	}
 
-	public Population() {
+	private Population() {
 		population = new ArrayList<Tree>();
 	}
 
@@ -48,9 +48,14 @@ public class Population {
 			while(j < population.size()) {
 				Tree tree2 = population.get(j);
 				if((new FindSimilarMember()).isSimilar(tree1, tree2)) {
+					if(tree1.getFitness() < tree2.getFitness())
 					toRemove.add(tree1);
+					else
+					toRemove.add(tree2);
 				}
+				j++;
 			}
+			i++;
 		}
 		
 		for(Tree tree: toRemove) {

@@ -48,7 +48,7 @@ public class ArticleTreeGenerator {
 				}
 			}
 			if(addingNode == true) {
-				Node node = new Node(tag, 1);
+				Node node = new Node(tag, 100);
 				parent.addChild(node);
 				parent.calculateProbabilities();
 				
@@ -64,12 +64,13 @@ public class ArticleTreeGenerator {
 		
 		for(String word: Arrays.asList(words)) {
 			String[] partsOfWord = word.split("/");
-			String possibleTag = partsOfWord[1];
-			try {
+			try {			
+				String possibleTag = partsOfWord[1];
+
 				Tag foundTag = Tag.valueOf(possibleTag);
 				tags.add(foundTag);
 			}
-			catch(IllegalArgumentException e) {
+			catch(Exception e) {
 				continue;
 			}
 		}

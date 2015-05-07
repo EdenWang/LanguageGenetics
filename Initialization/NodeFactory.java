@@ -17,7 +17,9 @@ public class NodeFactory {
 		 // int count = 0;
 		  
 			for (Tag tag:tree.Tag.tags){
-				
+				if(tag == Tag.START) {
+					continue;
+				}
 			//	count++;
 			//	System.out.print(count);
 				int random1 = random.nextInt(100)+1;

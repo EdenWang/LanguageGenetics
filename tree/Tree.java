@@ -1,6 +1,7 @@
 package tree;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
@@ -9,7 +10,12 @@ import java.util.List;
 import treeEditDistance.TreeDefinitionOnID;
 
 
-public class Tree extends TreeDefinitionOnID{
+public class Tree extends TreeDefinitionOnID implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private List<Node> allNodes;
 
@@ -23,8 +29,9 @@ public class Tree extends TreeDefinitionOnID{
 	private final double widthFactor = 1;
 	private final double depthFactor = 1;
 
+	
 	public Tree() {
-		startNode = new Node(Tag.START, 1);
+		startNode = new Node(Tag.START, 100);
 		simplicityScore = getSimplicityScore();
 	}
 
@@ -62,6 +69,29 @@ public class Tree extends TreeDefinitionOnID{
 	public void removeNode(Node node) {
 		Node parentNode = getParent(node);
 		parentNode.getAllChildren().remove(node);
+	}
+	
+	public void  normonizeProbability(){
+		
+		for (Node parent:this.getAllNodes()){
+			if (parent.getChildren().size() != 0){
+				int[] realProbability = new int[parent.getChildren().size()];
+				int total = 0; 
+				int[] normonizedProbability = new int[parent.getChildren().size()];
+				for (int i = 0; i < parent.getChildren().size(); i++){
+					realProbability[i] = parent.getChildren().get(i).getProbability();
+					total = total + realProbability[i]; 
+				}
+				
+				for (int i = 0; i < parent.getChildren().size(); i++){
+					
+					normonizedProbability[i] = (int) realProbability[i]*100/ total ;
+					parent.getChildren().get(i).setProbability(normonizedProbability[i]);
+				}
+			}
+			else 
+				continue;
+		}
 	}
 
 	public void changeProbability(Node node, int probability) {
@@ -142,6 +172,11 @@ public class Tree extends TreeDefinitionOnID{
 	public double getFitness(){
 
 		return this.fitness;
+	}
+	
+	public void printTree(){
+		
+		startNode.printTree("", true);
 	}
 
 	//add by eden

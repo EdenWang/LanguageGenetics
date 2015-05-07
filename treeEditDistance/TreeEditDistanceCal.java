@@ -12,7 +12,7 @@ public class TreeEditDistanceCal {
 	
 	public double TreeEditDistanceCalculation (Tree aTree, Tree bTree, OpsTreeTransform ops){
 		
-	
+		double startTime = System.currentTimeMillis();
 		aTree.TreeWithID(aTree, aTree.getStartNode(), 0);
 		bTree.TreeWithID(bTree, bTree.getStartNode(), 0);
 		Distance = new double[aTree.getAllNodes().size()+1][bTree.getAllNodes().size()+1];
@@ -65,10 +65,12 @@ public class TreeEditDistanceCal {
                 	 }
                 }
 		    }
-		}
+		  }
 		    	
 		// return result
-		
+	 double endTime = System.currentTimeMillis();
+	double duration = (endTime - startTime);
+		System.out.println(duration);
 		return Distance[aTree.getAllNodes().size()][bTree.getAllNodes().size()];
 		
 		}
@@ -145,5 +147,10 @@ public class TreeEditDistanceCal {
             rows = ForestDistance.get(a);
             rows.put(b, aValue);
 		}
+		//long startTime = System.nanoTime();
+		//methodToTime();
+		//long endTime = System.nanoTime();
+
+		//long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
 }
 

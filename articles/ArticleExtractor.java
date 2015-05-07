@@ -5,14 +5,14 @@ import java.io.IOException;
 
 public class ArticleExtractor {
 
-	private String pathWiki = "D:\\Courses\\Final project\\LanguageGenetics\\wikipedia_test.txt";
-	private ArticleDB articleDB;
+	private String pathWiki = "D:\\Courses\\Final project\\LanguageGenetics\\wikipedia_pos.txt";
+//	private ArticleDB articleDB;
 	
 	public ArticleExtractor() throws ClassNotFoundException, IOException {
-		articleDB = ArticleDB.getInstance();
+	//	articleDB = ArticleDB.getInstance();
 	}
 
-	public void getArticles() throws IOException {
+	public void getArticles(ArticleDB articleDB) throws IOException {
 
 		File file = new File(pathWiki);
 

@@ -58,7 +58,7 @@ public class ArticleDB {
 		catch (FileNotFoundException e) {
 			ArticleExtractor articleExtractor = new ArticleExtractor();
 			articles = new TreeMap<Double, Article>();
-			articleExtractor.getArticles();
+			articleExtractor.getArticles(this);
 		}
 
 	}

@@ -5,7 +5,7 @@ package Evaluation;
 public class FindSimilarMember {
 	
 	private double distance = 0.0;
-	public static double minimumDistance = 0.0; // minimum distance to be no similar
+	public static double minimumDistance = 50; // minimum distance to be no similar
 	
 	public boolean isSimilar(Tree aTree, Tree bTree){
 		

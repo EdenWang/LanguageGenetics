@@ -13,7 +13,7 @@ import articles.ArticleDB;
 public class CalFitness {
 	
 	public double Fitness = 0.0;
-	private Double[]  Distance = null;
+	private double[]  Distance = new double[ArticleTreeNum];
 	
 	public static double accuracyWeight = 1;
 	public static double simplicityWeight = 1;
@@ -48,7 +48,7 @@ public class CalFitness {
 		return Fitness;
 	}
 		
-	public double sumAll(Double[] distance){
+	public double sumAll(double[] distance){
 			
 			double sum = 0.0;
 			for(double dis:distance){

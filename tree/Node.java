@@ -1,10 +1,15 @@
 package tree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node {
+public class Node implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Tag tag;
 	private int probability; 
 	private int amount;
@@ -92,11 +97,15 @@ public class Node {
 		}
 		else {
 			for(Node child: children) {
-				return child.getParent(node);
+				if(child.getParent(node) != null) {
+					return child.getParent(node);
+				}
 			}
 		}
 		return null;
 	}
+	
+
 
 	public void addAmount() {
 		amount++;
@@ -121,6 +130,17 @@ public class Node {
 		children.add(node);
 	}
 	
+	
+	public void printTree(String prefix, boolean isTail) {
+		System.out.println(prefix + (isTail ? "└── " : "├── ") + "[" + tag.toString() + ", " + probability + ", " + amount + "]");
+        for (int i = 0; i < children.size() - 1; i++) {
+            children.get(i).printTree(prefix + (isTail ? "    " : "│   "), false);
+        }
+        if (children.size() > 0) {
+            children.get(children.size() - 1).printTree(prefix + (isTail ?"    " : "│   "), true);
+        }
+	}
+	
 	// add by Eden
 	public boolean sameNode(Node aNode){
 		if (this.getTag() == aNode.getTag() && this.getProbability() == aNode.getProbability()){
@@ -129,6 +149,10 @@ public class Node {
 		else {
 			return false;
 		}
+	}
+
+	public List<Node> getChildren() {
+		return this.children;
 	}
 	
 	

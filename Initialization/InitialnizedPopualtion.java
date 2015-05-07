@@ -19,13 +19,15 @@ public class InitialnizedPopualtion {
    public Tree GenerateRandomTree(){
 	   
 	   Tree aTree = new Tree();
-	   Node start = new Node(Tag.START,1);
+	   Node start = new Node(Tag.START,100);
 	   for (int i = 1; i <= random.nextInt(maxWidth)+1; i++){
 		   
 		   start.addChild(BuildRandomTree(random.nextInt(maxDepth-1)));
 	   }
 	   
 	   aTree.setStartNode(start);
+	  aTree.normonizeProbability();
+	   
 	   return aTree;
 	   
    }
@@ -43,7 +45,12 @@ public class InitialnizedPopualtion {
 	      
 	     for (int i = 1; i <= random.nextInt(maxWidth)+1; i++){
 	    	 
+	    	
+	    	// Node newNode = BuildRandomTree(maxDepth - 1);
+	    	// int realProb = newNode.getProbability();
+	    	// newNode.setProbability(0);
 	    	 root.addChild(BuildRandomTree(maxDepth - 1));
+	    	// root.changeProbability(newNode, realProb);
 	    	 
 	     }    		 
 	   }

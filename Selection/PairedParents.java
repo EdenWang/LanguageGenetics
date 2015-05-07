@@ -1,13 +1,18 @@
 package Selection;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import tree.Tree;
 import Evaluation.FindSimilarMember;
 
-public class PairedParents {
+public class PairedParents implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Tree parent1;
 	private Tree parent2;
 	
@@ -15,6 +20,8 @@ public class PairedParents {
 	
 	public static double distanceAdjuster = 2;
 	public static double fitnessAdjuster = 1;
+	
+	
 	
 	public PairedParents(Tree tree1, Tree tree2) {
 		parent1 = tree1;
